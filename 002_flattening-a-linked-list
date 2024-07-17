@@ -1,0 +1,26 @@
+link - https://www.geeksforgeeks.org/problems/flattening-a-linked-list/1
+
+code : 
+Node *flatten(Node *root) {
+    Node* temp = root;
+    vector<int> v;
+    while(temp){
+        v.push_back(temp->data);
+        Node*cur = temp->bottom;
+        temp = temp->next;
+        while(cur){
+            v.push_back(cur->data);
+            cur = cur->bottom;
+        }
+    }
+    sort(v.begin(), v.end());
+    // for(auto &el : v)   cout<<el<<",";
+    Node * res = NULL;
+    root = temp = nullptr ;
+    for(auto &el : v){
+        Node* tt = new Node(el);
+        if(!res)  { res = temp = tt;}
+        else  {  temp->bottom = tt ; temp = temp->bottom;}
+    }
+    return res;
+}
