@@ -1,0 +1,14 @@
+link - https://leetcode.com/problems/move-zeroes
+submission - https://leetcode.com/problems/move-zeroes/submissions/1324223443/
+
+code : 
+class Solution {
+public:
+    void moveZeroes(vector<int>& v) {
+        int n=size(v), i=0, j=0;
+        while(j<n){
+            if(v[j])    swap(v[i], v[j]), i++;
+            j++;
+        }
+    }
+};
