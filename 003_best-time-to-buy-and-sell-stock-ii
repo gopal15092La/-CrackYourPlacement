@@ -1,0 +1,17 @@
+link - https://leetcode.com/problems/best-time-to-buy-and-sell-stock-ii
+
+submission - https://leetcode.com/problems/best-time-to-buy-and-sell-stock-ii/submissions/1325345215/
+
+code : 
+class Solution {
+public:
+    int maxProfit(vector<int>& prices) {
+        int n=prices.size();
+        long long sum=0;
+        for(int i=n-2;i>=0;i--){
+            if(prices[i+1]>prices[i])
+                sum+=prices[i+1]-prices[i];
+        }
+        return sum;
+    }
+};
