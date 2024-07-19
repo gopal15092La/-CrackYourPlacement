@@ -1,0 +1,53 @@
+https://leetcode.com/problems/subtree-of-another-tree/
+
+
+code : 
+/**
+ * Definition for a binary tree node.
+ * struct TreeNode {
+ *     int val;
+ *     TreeNode *left;
+ *     TreeNode *right;
+ *     TreeNode() : val(0), left(nullptr), right(nullptr) {}
+ *     TreeNode(int x) : val(x), left(nullptr), right(nullptr) {}
+ *     TreeNode(int x, TreeNode *left, TreeNode *right) : val(x), left(left), right(right) {}
+ * };
+ */
+class Solution {
+public:
+    bool isSubtree(TreeNode* root, TreeNode* sub) {
+        TreeNode*cur=root;
+        return helper(root,sub);
+    }
+    bool helper(TreeNode* root, TreeNode* sub)
+    {
+        if(!root)
+            return false;
+        bool a=false, b=false, c=false;
+        if(root->val==sub->val)
+            a=check(root,sub);
+        if(root->left)
+            b=helper(root->left,sub);
+        if(root->right)
+            c=helper(root->right,sub);
+        // cout<<"HI\n";
+        return (a||b||c);
+    }
+    bool check(TreeNode* p, TreeNode* q)
+    {
+        if(!p && !q)    
+            return true;
+        if((!p && q)||(p && !q))
+            return false;
+        if(p->val!=q->val)
+            return false;
+        return (check(p->left, q->left) && check(p->right,q->right));
+    }   
+};
+
+
+
+
+
+
+
