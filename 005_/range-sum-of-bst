@@ -1,0 +1,27 @@
+link - https://leetcode.com/problems/range-sum-of-bst/
+
+code - 
+/**
+ * Definition for a binary tree node.
+ * struct TreeNode {
+ *     int val;
+ *     TreeNode *left;
+ *     TreeNode *right;
+ *     TreeNode() : val(0), left(nullptr), right(nullptr) {}
+ *     TreeNode(int x) : val(x), left(nullptr), right(nullptr) {}
+ *     TreeNode(int x, TreeNode *left, TreeNode *right) : val(x), left(left), right(right) {}
+ * };
+ */
+class Solution {
+public:
+    int f(TreeNode* node, int l , int h){
+        if(!node)   return 0;
+        int cur = 0;
+        if(node->val >= l && node->val <= h)
+            cur += node->val;
+        return cur + f(node->left,l,h) + f(node->right,l,h);
+    }
+    int rangeSumBST(TreeNode* root, int low, int high) {
+        return f(root, low, high);
+    }
+};
